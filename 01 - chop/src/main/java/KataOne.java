@@ -21,13 +21,9 @@ public class KataOne
         int mid = (start + end) / 2;
 
         if(array[mid] > find)
-        {
             return recursiveChop(find, array, start, mid - 1);
-        }
         else if(array[mid] < find)
-        {
             return recursiveChop(find, array, mid + 1, end);
-        }
         else
             return mid;
     }
