@@ -26,13 +26,6 @@
             <url>http://scala-tools.org/repo-releases</url>
         </pluginRepository>
     </pluginRepositories>
-    <dependencies>
-        <dependency>
-            <groupId>org.scalatest</groupId>
-            <artifactId>scalatest</artifactId>
-            <version>1.4.RC2</version>
-        </dependency>
-    </dependencies>
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
         <testSourceDirectory>src/test/scala</testSourceDirectory>
