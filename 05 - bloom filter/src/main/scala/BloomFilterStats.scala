@@ -1,4 +1,4 @@
-import collection.mutable.Buffer
+import collection.mutable
 import io.Source
 import util.Random
 
@@ -9,13 +9,13 @@ import util.Random
  */
 
 object BloomFilterStats extends App {
-    val words = Buffer[String]()
-    val filter = new BloomFilter(131072)
+    val words = mutable.Buffer[String]()
+    val filter = new BloomFilter(131072, 3)
     var hits: Int = 0
     var falsePositives: Int = 0
     
     for(word <- Source.fromFile("words.txt").getLines()) {
-        filter.add(word)
+        filter += word
         words += word
     }
 
@@ -39,7 +39,7 @@ object BloomFilterStats extends App {
         val rand: Random = new Random
         val sb: StringBuilder = new StringBuilder
         
-        for (i <- 0 until 5)
+        for (i <- 0 until length)
             sb.append(letters.charAt(math.abs(rand.nextInt()) % letters.length()))
         
         sb.toString()

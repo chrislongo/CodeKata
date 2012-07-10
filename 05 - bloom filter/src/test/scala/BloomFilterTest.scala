@@ -10,9 +10,9 @@ class BloomFilterTest extends FunSuite {
     test("bloom filter contains strings") {
         val filter: BloomFilter = new BloomFilter()
 
-        filter.add("One")
-        filter.add("Two")
-        filter.add("Three")
+        filter += "One"
+        filter += "Two"
+        filter += "Three"
 
         assert(filter.contains("One"))
         assert(filter.contains("Two"))
@@ -22,9 +22,9 @@ class BloomFilterTest extends FunSuite {
     test("bloom filter does not contain strings") {
         val filter: BloomFilter = new BloomFilter()
 
-        filter.add("One")
-        filter.add("Two")
-        filter.add("Three")
+        filter += "One"
+        filter += "Two"
+        filter += "Three"
 
         assert(! filter.contains("Four"))
         assert(! filter.contains("Five"))

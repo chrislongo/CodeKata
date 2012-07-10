@@ -1,3 +1,4 @@
+import collection.mutable
 import collection.mutable.{ArrayBuffer, BitSet}
 import util.MurmurHash
 
@@ -7,10 +8,11 @@ import util.MurmurHash
  * Time: 8:26 PM
  */
 
-class BloomFilter(elems: Int = 1024) {
-    private val bits = new BitSet(elems)
+class BloomFilter(elems: Int = 1024, k: Int = 3) {
+    private val bits = new mutable.BitSet(elems)
+    def size: Int = bits.size
 
-    def add(s: String) {
+    def += (s: String) {
         for(hash <- hash(s)) bits.add(hash)
     }
     
@@ -20,20 +22,16 @@ class BloomFilter(elems: Int = 1024) {
         true
     }
 
-    def size: Int = {
-        bits.size
-    }
-    
     def hash(s: String): Array[Int] = {
         val buffer = ArrayBuffer.empty[Int]
 
         val murmur = new MurmurHash[String](0)
         murmur.apply(s)
 
-        for(i <- 0 until 5) {
+        for(i <- 0 until k) {
             val hash = math.abs(murmur.hash % elems)
-            buffer += hash
             murmur.append(hash)
+            buffer += hash
         }
 
         buffer.toArray
