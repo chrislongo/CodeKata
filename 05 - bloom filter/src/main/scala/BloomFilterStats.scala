@@ -10,7 +10,7 @@ import util.Random
 
 object BloomFilterStats extends App {
     val words = Buffer[String]()
-    val filter = new BloomFilter(65535)
+    val filter = new BloomFilter(131072)
     var hits: Int = 0
     var falsePositives: Int = 0
     
@@ -32,9 +32,9 @@ object BloomFilterStats extends App {
 
     println("Size: " + filter.size)
     println("Hits: " + hits)
-    println("False positives: " + falsePositives)
+    println("False positives: " + falsePositives + " (" + math.round(falsePositives / 1024.0 * 100) + "%)")
 
-    def randomWord(): String = {
+    def randomWord(length: Int = 5): String = {
         val letters = "abcdefghijklmnopqrstuvwxyz"
         val rand: Random = new Random
         val sb: StringBuilder = new StringBuilder
