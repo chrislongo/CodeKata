@@ -1,5 +1,5 @@
 import collection.mutable
-import collection.mutable.{ArrayBuffer, BitSet}
+import collection.mutable.ArrayBuffer
 import util.MurmurHash
 
 /**
@@ -12,7 +12,7 @@ class BloomFilter(elems: Int = 1024, k: Int = 3) {
     private val bits = new mutable.BitSet(elems)
     def size: Int = bits.size
 
-    def += (s: String) {
+    def add(s: String) {
         for(hash <- hash(s)) bits.add(hash)
     }
     

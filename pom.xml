@@ -11,6 +11,7 @@
         <module>02-chop</module>
         <module>04-data</module>
         <module>05-bloom-filter</module>
+        <module>06-anagram</module>
     </modules>
     <repositories>
         <repository>

@@ -14,8 +14,8 @@ object BloomFilterStats extends App {
     var hits: Int = 0
     var falsePositives: Int = 0
     
-    for(word <- Source.fromFile("words.txt").getLines()) {
-        filter += word
+    for(word <- Source.fromFile("data/words.txt").getLines()) {
+        filter.add(word)
         words += word
     }
 
