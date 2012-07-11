@@ -25,7 +25,7 @@ class Anagram {
             }
         }
 
-        recursive("", word);
+        recursive("", word)
         buffer.toArray
     }
 }
