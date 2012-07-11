@@ -1,3 +1,4 @@
+import collection.mutable
 import io.Source
 
 /**
@@ -8,17 +9,41 @@ import io.Source
 
 object AnagramFinder extends App {
     val anagram = new Anagram
+    var map = Map.empty[String, mutable.Set[String]]
 
-    loadWords()
-    find()
+    benchmark()
+
+    def benchmark()
+    {
+        val start = System.currentTimeMillis()
+
+        loadWords()
+        val count = find()
+
+        val stop = System.currentTimeMillis()
+
+        println("Sets: " + count)
+        println("Time: " + (stop - start) + "ms")
+    }
 
     def loadWords() {
-        for (word <- Source.fromFile("data/words.txt").getLines()) {
+        for (line <- Source.fromFile("data/words.txt").getLines()) {
+            val word = line.toLowerCase
+            val key = word.sorted
+            if(!(map contains key)) {
+                map += (key -> mutable.Set.empty)
+            }
+            map(key) += word
         }
     }
     
-    def find() {
-        for(key <- map.keys) {
-        }
+    def find(): Int = {
+        var count = 0
+
+        for(key <- map.keys)
+            if(map(key).size > 1)
+                count += 1
+
+        count
     }
 }
