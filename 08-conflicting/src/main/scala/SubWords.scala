@@ -23,22 +23,22 @@ object SubWords extends App {
     }
 
     def loadWords() {
-        for(line <- Source.fromFile("data/words.txt").getLines())
+        for(line <- Source.fromFile("data/words.txt").getLines().filter(s => s.length() <= 6)) {
             set += line.toLowerCase
+        }
     }
     
     def countWords(): Int = {
         var count = 0
 
-        for(word <- set) {
-            for(i <- 0 until word.size) {
-                if(word.size == 6) {
-                    val sub1 = word.substring(0, i)
-                    val sub2 = word.substring(i)
+        for(word <- set.filter(s => s.length == 6)) {
+            for(i <- 1 until word.length) {
 
-                    if(set.contains(sub1) && set.contains(sub2))
-                        count += 1
-                }
+            val sub1 = word.substring(0, i)
+            val sub2 = word.substring(i)
+
+            if(set.contains(sub1) && set.contains(sub2))
+                count += 1
             }
         }
         count
