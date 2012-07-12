@@ -7,7 +7,7 @@ import io.Source
  * Time: 9:02 PM
  */
 
-object SubWords extends App {
+object SubWordsFast extends App {
     val set = mutable.Set.empty[String]
 
     benchmark()
