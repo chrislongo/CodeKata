@@ -31,12 +31,14 @@ object SubWords extends App {
         var count = 0
 
         for(word <- set) {
-            for(i <- 0 until word.length()) {
-                val sub1 = word.substring(0, i)
-                val sub2 = word.substring(i + 1)
-                
-                if(set.contains(sub1) && set.contains(sub2))
-                    count += 1
+            for(i <- 0 until word.size) {
+                if(word.size == 6) {
+                    val sub1 = word.substring(0, i)
+                    val sub2 = word.substring(i)
+
+                    if(set.contains(sub1) && set.contains(sub2))
+                        count += 1
+                }
             }
         }
         count
