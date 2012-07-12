@@ -12,6 +12,7 @@
         <module>04-data</module>
         <module>05-bloom-filter</module>
         <module>06-anagram</module>
+        <module>08-conflicting</module>
     </modules>
     <repositories>
         <repository>

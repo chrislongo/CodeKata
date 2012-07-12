@@ -13,8 +13,7 @@ object AnagramFinder extends App {
 
     benchmark()
 
-    def benchmark()
-    {
+    def benchmark() {
         val start = System.currentTimeMillis()
 
         loadWords()
