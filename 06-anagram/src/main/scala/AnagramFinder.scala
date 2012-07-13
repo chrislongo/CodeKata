@@ -8,7 +8,7 @@ import io.Source
  */
 
 object AnagramFinder extends App {
-    val anagram = new Anagram
+    val anagram = new AnagramJava
     var map = Map.empty[String, mutable.Set[String]]
 
     benchmark()
