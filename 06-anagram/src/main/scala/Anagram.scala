@@ -13,7 +13,6 @@ class Anagram {
         def recursive(prefix: String, word: String) {
             if(word.length() <= 1) {
                 buffer += (prefix + word)
-                println(prefix + " " + word)
             }
             else {
                 for(i <- 0 until word.length()) {
