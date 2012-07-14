@@ -65,6 +65,15 @@ public class CheckOutTest {
         assertEquals(175, checkOut.total());
     }
 
+    @Test(expected=IllegalArgumentException.class)
+    public void testBadItem() throws Exception
+    {
+        CheckOut checkOut = new CheckOut(rules);
+        Item item = new Item("X");
+        checkOut.scan(item);
+        checkOut.total();
+    }
+
     public int price(String itemList) throws Exception {
         CheckOut checkOut = new CheckOut(rules);
 

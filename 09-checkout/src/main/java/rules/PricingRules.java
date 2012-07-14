@@ -17,8 +17,7 @@ import java.util.Map;
 public class PricingRules {
     private Map<Item, Rule> map = new HashMap<Item, Rule>();
 
-    public PricingRules(String rulesFile) throws IOException, DataParsingException
-    {
+    public PricingRules(String rulesFile) throws IOException, DataParsingException {
         BufferedReader reader = new BufferedReader(new FileReader(rulesFile));
 
         while(reader.ready()) {
@@ -41,7 +40,8 @@ public class PricingRules {
                     discountPrice = Integer.parseInt(discount[1]);
                 }
 
-                map.put(new Item(name),
+                map.put(
+                    new Item(name),
                     new ItemRule(price, discountCount, discountPrice));
             }
             catch(NumberFormatException e) {
@@ -52,6 +52,10 @@ public class PricingRules {
 
     public int applyRules(Item item, int count) {
         Rule rule = map.get(item);
+
+        if(rule == null)
+            throw new IllegalArgumentException("Unknown item: " + item);
+
         return rule.getTotal(count);
     }
 }
