@@ -10,9 +10,6 @@ import item.Item;
 public class PricingRules {
     RuleFactory factory = new RuleFactory();
 
-    public PricingRules() {
-    }
-
     public int applyRules(Item item, int count) {
         return factory.getRule(item).getTotal(count);
     }

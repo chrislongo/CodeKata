@@ -1,4 +1,6 @@
+import checkout.CheckOut;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import rules.PricingRules;
 import item.Item;
 
@@ -44,6 +46,15 @@ public class CheckOutTest {
         assertEquals(160, checkOut.total());
         checkOut.scan(new Item("B"));
         assertEquals(175, checkOut.total());
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testBadItem() throws Exception
+    {
+        CheckOut checkOut = new CheckOut(new PricingRules());
+        Item item = new Item("X");
+        checkOut.scan(item);
+        checkOut.total();
     }
 
     public int price(String itemList) {

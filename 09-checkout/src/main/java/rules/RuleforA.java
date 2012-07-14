@@ -10,7 +10,6 @@ public class RuleforA implements Rule {
     public int getTotal(int count) {
         int discountedPrice = count / 3 * 130;
         int regularPrice = count % 3 * 50;
-
         return (discountedPrice + regularPrice);
     }
 }

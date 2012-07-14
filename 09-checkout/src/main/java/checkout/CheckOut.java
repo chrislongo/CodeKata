@@ -1,3 +1,5 @@
+package checkout;
+
 import rules.PricingRules;
 import item.Item;
 
