@@ -13,6 +13,7 @@
         <module>05-bloom-filter</module>
         <module>06-anagram</module>
         <module>08-conflicting</module>
+        <module>09-checkout</module>
     </modules>
     <repositories>
         <repository>
