@@ -1,5 +1,7 @@
 package item;
 
+import rules.Rule;
+
 /**
  * User: chris
  * Date: 7/13/12
@@ -18,12 +20,13 @@ public class Item {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
 
         Item item = (Item) o;
 
-        if (name != null ? !name.equals(item.name) : item.name != null) return false;
+        if(name != null ? !name.equals(item.name) : item.name != null)
+            return false;
 
         return true;
     }
@@ -31,5 +34,12 @@ public class Item {
     @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+            "name='" + name + '\'' +
+            '}';
     }
 }

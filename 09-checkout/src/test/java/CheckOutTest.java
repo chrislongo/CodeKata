@@ -1,4 +1,6 @@
 import checkout.CheckOut;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import rules.PricingRules;
@@ -12,6 +14,21 @@ import static junit.framework.Assert.assertEquals;
  * Time: 8:30 AM
  */
 public class CheckOutTest {
+
+    private PricingRules rules;
+
+    @Before
+    public void setUp() throws Exception
+    {
+        this.rules = new PricingRules("data/pricing.txt");
+    }
+
+    @After
+    public void tearDown() throws Exception
+    {
+        this.rules = null;
+    }
+
     @Test
     public void testTotal() throws Exception {
         assertEquals(0, price(""));
@@ -33,7 +50,7 @@ public class CheckOutTest {
 
     @Test
     public void testIncremental() throws Exception {
-        CheckOut checkOut = new CheckOut(new PricingRules());
+        CheckOut checkOut = new CheckOut(rules);
 
         assertEquals(0, checkOut.total());
         checkOut.scan(new Item("A"));
@@ -48,17 +65,8 @@ public class CheckOutTest {
         assertEquals(175, checkOut.total());
     }
 
-    @Test(expected=IllegalArgumentException.class)
-    public void testBadItem() throws Exception
-    {
-        CheckOut checkOut = new CheckOut(new PricingRules());
-        Item item = new Item("X");
-        checkOut.scan(item);
-        checkOut.total();
-    }
-
-    public int price(String itemList) {
-        CheckOut checkOut = new CheckOut(new PricingRules());
+    public int price(String itemList) throws Exception {
+        CheckOut checkOut = new CheckOut(rules);
 
         for (int i = 0; i < itemList.length(); i++) {
             String itemName = itemList.substring(i, i + 1);
