@@ -10,7 +10,7 @@ class DocumentParserTest extends FunSuite
 {
     test("Parse document") {
         val parser = new DocumentParser
-        parser.parse("data/mobydick.txt")
+        parser.loadFile("data/mobydick.txt")
         parser.printTrigram()
     }
 }

@@ -11,8 +11,8 @@ class DocumentParser
 {
     val map = collection.mutable.Map.empty[String, collection.mutable.Set[String]]
 
-    def parse(fileName: String) {
-        val pattern = "\\w+".r
+    def loadFile(fileName: String) {
+        val pattern = "\\w+'?[a-z]?".r
         val text = Source.fromFile(fileName).mkString
         val words = pattern.findAllIn(text).toArray
 
