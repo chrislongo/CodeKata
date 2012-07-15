@@ -15,6 +15,7 @@
         <module>08-conflicting</module>
         <module>09-checkout</module>
         <module>11-sorting</module>
+        <module>13-cloc</module>
     </modules>
     <repositories>
         <repository>
