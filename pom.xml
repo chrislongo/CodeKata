@@ -14,6 +14,7 @@
         <module>06-anagram</module>
         <module>08-conflicting</module>
         <module>09-checkout</module>
+        <module>11-sorting</module>
     </modules>
     <repositories>
         <repository>
