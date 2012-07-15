@@ -5,7 +5,7 @@ import org.junit.Test;
 * Date: 7/15/12
 * Time: 12:29 PM
 */
-public class CountLinesTest {
+public class LineCounterTest {
     @Test
     public void testCount() throws Exception {
         assert (LineCounter.count("data/cloc-data1.txt") == 3);

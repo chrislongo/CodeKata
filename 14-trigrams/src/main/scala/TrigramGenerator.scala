@@ -7,7 +7,7 @@ import util.Random
  * Time: 2:36 PM
  */
 
-class DocumentParser
+class TrigramGenerator
 {
     private val map = collection.mutable.Map.empty[String, collection.mutable.Set[String]]
 
@@ -18,8 +18,7 @@ class DocumentParser
 
         for(i <- 2 until words.size) {
             var set = collection.mutable.Set.empty[String]
-            var key = (words(i - 2) + " " + words(i - 1))
-            key = key.toLowerCase
+            val key = (words(i - 2) + " " + words(i - 1)).toLowerCase
 
             if(!map.contains(key))
                 map(key) = set

@@ -6,10 +6,10 @@ import org.scalatest.FunSuite
  * Time: 2:43 PM
  */
 
-class DocumentParserTest extends FunSuite
+class TrigramGeneratorTest extends FunSuite
 {
     test("Parse document") {
-        val parser = new DocumentParser
+        val parser = new TrigramGenerator
         parser.loadFile("data/mobydick.txt")
         parser.printTrigram()
     }
