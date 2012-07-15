@@ -9,7 +9,7 @@ import util.Random
 
 class DocumentParser
 {
-    val map = collection.mutable.Map.empty[String, collection.mutable.Set[String]]
+    private val map = collection.mutable.Map.empty[String, collection.mutable.Set[String]]
 
     def loadFile(fileName: String) {
         val pattern = "\\w+'?[a-z]?".r
@@ -52,7 +52,7 @@ class DocumentParser
         }
     }
 
-    def randomSeed: String = {
+    private def randomSeed: String = {
        val random = new Random()
        val array = map.keys.toArray
        array(random.nextInt(array.size))
