@@ -9,9 +9,10 @@ class SortChars
     private val chars = new Array[Int](26)
 
     def sort(message: String) {
-        for(ch <- message.toLowerCase) {
-            if(ch >= 'a' && ch <= 'z')
-                chars(ch - 'a') += 1
+        for(ch <- message) {
+            val c = ch.toLower
+            if(c >= 'a' && c <= 'z')
+                chars(c - 'a') += 1
         }
     }
 
