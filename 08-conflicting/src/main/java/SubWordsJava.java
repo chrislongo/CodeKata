@@ -9,12 +9,10 @@ import java.util.TreeSet;
  * Date: 7/12/12
  * Time: 3:47 PM
  */
-public class SubWordsJava
-{
+public class SubWordsJava {
     private Set<String> set = new TreeSet<String>();
 
-    public static void main(String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
         long start = System.currentTimeMillis();
 
         SubWordsJava sub = new SubWordsJava();
@@ -27,34 +25,26 @@ public class SubWordsJava
         System.out.println("Time: " + (end - start) + "ms");
     }
 
-    public void loadWords() throws IOException
-    {
+    public void loadWords() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("data/words.txt"));
 
-        while(reader.ready())
-        {
+        while(reader.ready()) {
             String word = reader.readLine().toLowerCase();
 
-            if(word.length() <= 6)
-                set.add(word);
+            if(word.length() <= 6) set.add(word);
         }
     }
 
-    public int countWords()
-    {
+    public int countWords() {
         int count = 0;
 
-        for(String word : set)
-        {
-            if(word.length() == 6)
-            {
-                for(int i = 1; i < word.length(); i++)
-                {
+        for(String word : set) {
+            if(word.length() == 6) {
+                for(int i = 1; i < word.length(); i++) {
                     String sub1 = word.substring(0, i);
                     String sub2 = word.substring(i);
 
-                    if(set.contains(sub1) && set.contains(sub2))
-                        count++;
+                    if(set.contains(sub1) && set.contains(sub2)) count++;
                 }
             }
         }

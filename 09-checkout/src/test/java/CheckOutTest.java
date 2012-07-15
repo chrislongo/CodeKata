@@ -18,14 +18,12 @@ public class CheckOutTest {
     private PricingRules rules;
 
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         this.rules = new PricingRules("data/pricing.txt");
     }
 
     @After
-    public void tearDown() throws Exception
-    {
+    public void tearDown() throws Exception {
         this.rules = null;
     }
 
@@ -65,9 +63,8 @@ public class CheckOutTest {
         assertEquals(175, checkOut.total());
     }
 
-    @Test(expected=IllegalArgumentException.class)
-    public void testBadItem() throws Exception
-    {
+    @Test(expected = IllegalArgumentException.class)
+    public void testBadItem() throws Exception {
         CheckOut checkOut = new CheckOut(rules);
         Item item = new Item("X");
         checkOut.scan(item);
@@ -77,7 +74,7 @@ public class CheckOutTest {
     public int price(String itemList) throws Exception {
         CheckOut checkOut = new CheckOut(rules);
 
-        for (int i = 0; i < itemList.length(); i++) {
+        for(int i = 0; i < itemList.length(); i++) {
             String itemName = itemList.substring(i, i + 1);
             Item item = new Item(itemName);
             checkOut.scan(item);
