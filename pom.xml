@@ -16,6 +16,7 @@
         <module>09-checkout</module>
         <module>11-sorting</module>
         <module>13-cloc</module>
+        <module>14-trigrams</module>
     </modules>
     <repositories>
         <repository>
