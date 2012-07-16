@@ -9,7 +9,8 @@ import org.scalatest.matchers.ShouldMatchers
 
 class SortCharsTest extends FunSuite with ShouldMatchers
 {
-    test("Sorted getSortedMessage matches expected ordering") {
+    test("Sorted getSortedMessage matches expected ordering")
+    {
         val sc = new SortChars
         sc.sort("When not studying nuclear physics, Bambi likes to play beach volleyball.")
         sc.sortedMessage should equal("aaaaabbbbcccdeeeeeghhhiiiiklllllllmnnnnooopprsssstttuuvwyyyy")

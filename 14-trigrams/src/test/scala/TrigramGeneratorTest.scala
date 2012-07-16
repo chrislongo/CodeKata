@@ -1,4 +1,5 @@
 import org.scalatest.FunSuite
+import org.scalatest.matchers.ShouldMatchers
 
 /**
  * User: chris
@@ -6,11 +7,12 @@ import org.scalatest.FunSuite
  * Time: 2:43 PM
  */
 
-class TrigramGeneratorTest extends FunSuite
+class TrigramGeneratorTest extends FunSuite with ShouldMatchers
 {
-    test("Parse document") {
-        val parser = new TrigramGenerator
-        parser.loadFile("data/mobydick.txt")
-        parser.printTrigram()
+    test("Parse large document") {
+        val generator = new TrigramGenerator("data/mobydick.txt")
+        val s = generator.generate(25)
+        s.split(" ").length should equal(25)
+        println(s)
     }
 }
