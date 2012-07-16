@@ -11,7 +11,7 @@ class TrigramGenerator(fileName: String)
 {
     private val map = collection.mutable.Map.empty[String, collection.mutable.Set[String]]
 
-    val pattern = "\\w+'?[a-z]?".r
+    val pattern = "\\w+'?[a-z,.]?".r
     val text = Source.fromFile(fileName).mkString
     val words = pattern.findAllIn(text).toArray
 
@@ -27,22 +27,26 @@ class TrigramGenerator(fileName: String)
         set += words(i)
     }
 
-    def generate(length: Int = 100): String = {
+    def generate(seed: String = randomSeed, length: Int = 100): String = {
         val random = new Random()
         val sb = new StringBuilder
 
-        var seed = randomSeed
         var word = seed
+        var key = seed
 
         for(i <- 0 until length - 1) {
             sb.append(word)
+
+            if(!map.contains(key))
+                return sb.toString()
+
             sb.append(" ")
 
-            val array = map(seed).toArray
+            val array = map(key).toArray
             val index = random.nextInt(array.size)
 
             word = array(index)
-            seed = (seed.split(" ")(1) + " " + word).toLowerCase
+            key = (key.split(" ")(1) + " " + word).toLowerCase
         }
 
         sb.toString()

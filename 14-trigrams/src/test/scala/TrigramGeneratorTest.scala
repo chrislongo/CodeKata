@@ -11,8 +11,15 @@ class TrigramGeneratorTest extends FunSuite with ShouldMatchers
 {
     test("Parse large document") {
         val generator = new TrigramGenerator("data/mobydick.txt")
-        val s = generator.generate(25)
-        s.split(" ").length should equal(25)
+        val s = generator.generate(length=200)
+        s.split(" ").length should equal(200)
+        println(s)
+    }
+
+    test("Expected results") {
+        val generator = new TrigramGenerator("data/trigram-data.txt")
+        val s = generator.generate("he thrusts")
+        s should equal("he thrusts his fists against the posts And still insists he sees the ghosts.")
         println(s)
     }
 }
