@@ -17,7 +17,7 @@ class TrigramGenerator(fileName: String)
 
     for(i <- 2 until words.size) {
         var set = collection.mutable.Set.empty[String]
-        val key = (words(i - 2) + " " + words(i - 1)).toLowerCase
+        val key = (words(i - 2) + " " + words(i - 1))
 
         if(!map.contains(key))
             map(key) = set
@@ -46,7 +46,7 @@ class TrigramGenerator(fileName: String)
             val index = random.nextInt(array.size)
 
             word = array(index)
-            key = (key.split(" ")(1) + " " + word).toLowerCase
+            key = (key.split(" ")(1) + " " + word)
         }
 
         sb.toString()

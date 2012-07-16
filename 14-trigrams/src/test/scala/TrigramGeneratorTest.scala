@@ -18,8 +18,8 @@ class TrigramGeneratorTest extends FunSuite with ShouldMatchers
 
     test("Expected results") {
         val generator = new TrigramGenerator("data/trigram-data.txt")
-        val s = generator.generate("he thrusts")
-        s should equal("he thrusts his fists against the posts And still insists he sees the ghosts.")
+        val s = generator.generate("He thrusts")
+        s should equal("He thrusts his fists against the posts And still insists he sees the ghosts.")
         println(s)
     }
 }
