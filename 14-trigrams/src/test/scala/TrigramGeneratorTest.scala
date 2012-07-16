@@ -9,6 +9,13 @@ import org.scalatest.matchers.ShouldMatchers
 
 class TrigramGeneratorTest extends FunSuite with ShouldMatchers
 {
+    test("Parse medium document") {
+        val generator = new TrigramGenerator("data/waroftheworlds.txt")
+        val s = generator.generate(length=200)
+        s.split(" ").length should equal(200)
+        println(s)
+    }
+
     test("Parse large document") {
         val generator = new TrigramGenerator("data/mobydick.txt")
         val s = generator.generate(length=200)
