@@ -12,14 +12,14 @@ class Dependencies
     private val matrix = ArrayBuffer.fill(64, 64)(0)
     private val items = mutable.MutableList.empty[String]
 
-    def addDirect(item: String, vertex: String) {
+    def addDirect(item: String, dependency: String) {
         if(!(items contains item))
             items += item
 
-        if(!(items contains vertex))
-            items += vertex
+        if(!(items contains dependency))
+            items += dependency
 
-        matrix(items.indexOf(item))(items.indexOf(vertex)) = 1
+        matrix(items.indexOf(item))(items.indexOf(dependency)) = 1
     }
 
     def of(item: String): Array[String] = {
