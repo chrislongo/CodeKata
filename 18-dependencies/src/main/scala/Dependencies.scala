@@ -38,6 +38,6 @@ class Dependencies
 
         visit(item)
 
-        visited.toArray
+        visited.toArray.drop(1)
     }
 }

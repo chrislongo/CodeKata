@@ -23,12 +23,12 @@ class DependenciesTest extends FunSuite with ShouldMatchers with BeforeAndAfter
         add("EF")
         add("FH")
 
-        dependencies("A") should equal("ABCEFGH")
-        dependencies("B") should equal("BCEFGH")
-        dependencies("C") should equal("CG")
-        dependencies("D") should equal("ABCDEFGH")
-        dependencies("E") should equal("EFH")
-        dependencies("F") should equal("FH")
+        dependenciesOf("A") should equal("BCEFGH")
+        dependenciesOf("B") should equal("CEFGH")
+        dependenciesOf("C") should equal("G")
+        dependenciesOf("D") should equal("ABCEFGH")
+        dependenciesOf("E") should equal("FH")
+        dependenciesOf("F") should equal("H")
     }
 
     test("Cyclical relationships") {
@@ -36,9 +36,9 @@ class DependenciesTest extends FunSuite with ShouldMatchers with BeforeAndAfter
         add("BC")
         add("CA")
 
-        dependencies("A") should equal("ABC")
-        dependencies("B") should equal("ABC")
-        dependencies("C") should equal("ABC")
+        dependenciesOf("A") should equal("BC")
+        dependenciesOf("B") should equal("AC")
+        dependenciesOf("C") should equal("AB")
     }
 
     def add(elems: String) {
@@ -47,7 +47,7 @@ class DependenciesTest extends FunSuite with ShouldMatchers with BeforeAndAfter
             deps.addDirect(item, elems.substring(i, i + 1))
     }
 
-    def dependencies(item: String): String = {
+    def dependenciesOf(item: String): String = {
         val builder = new StringBuilder
 
         for(s <- deps.of(item))
