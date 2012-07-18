@@ -1,4 +1,4 @@
-import org.scalatest.FunSuite
+import org.scalatest.{BeforeAndAfter, FunSuite}
 import org.scalatest.matchers.ShouldMatchers
 
 /**
@@ -7,9 +7,13 @@ import org.scalatest.matchers.ShouldMatchers
  * Time: 1:32 PM
  */
 
-class DependenciesTest extends FunSuite with ShouldMatchers
+class DependenciesTest extends FunSuite with ShouldMatchers with BeforeAndAfter
 {
-    var deps = new  Dependencies
+    var deps: Dependencies = _
+
+    before {
+        deps = new Dependencies
+    }
 
     test("List dependencies") {
         add("ABC")
@@ -25,6 +29,16 @@ class DependenciesTest extends FunSuite with ShouldMatchers
         dependencies("D") should equal("ABCDEFGH")
         dependencies("E") should equal("EFH")
         dependencies("F") should equal("FH")
+    }
+
+    test("Cyclical relationships") {
+        add("AB")
+        add("BC")
+        add("CA")
+
+        dependencies("A") should equal("ABC")
+        dependencies("B") should equal("ABC")
+        dependencies("C") should equal("ABC")
     }
 
     def add(elems: String) {
