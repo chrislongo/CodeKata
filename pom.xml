@@ -17,6 +17,7 @@
         <module>11-sorting</module>
         <module>13-cloc</module>
         <module>14-trigrams</module>
+        <module>18-dependencies</module>
     </modules>
     <repositories>
         <repository>
@@ -35,8 +36,8 @@
     <dependencies>
         <dependency>
             <groupId>org.scalatest</groupId>
-            <artifactId>scalatest</artifactId>
-            <version>1.4.RC2</version>
+            <artifactId>scalatest_2.9.1</artifactId>
+            <version>1.8</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
