@@ -18,6 +18,7 @@
         <module>13-cloc</module>
         <module>14-trigrams</module>
         <module>18-dependencies</module>
+        <module>19-word-chains</module>
     </modules>
     <repositories>
         <repository>
@@ -35,8 +36,14 @@
     </pluginRepositories>
     <dependencies>
         <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-compiler</artifactId>
+            <version>2.9.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>org.scalatest</groupId>
-            <artifactId>scalatest_2.9.1</artifactId>
+            <artifactId>scalatest_2.9.2</artifactId>
             <version>1.8</version>
         </dependency>
         <dependency>

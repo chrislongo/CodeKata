@@ -1,4 +1,5 @@
 import org.scalatest.FunSuite
+import org.scalatest.matchers.ShouldMatchers
 
 /**
  * User: chris
@@ -6,7 +7,7 @@ import org.scalatest.FunSuite
  * Time: 6:32 AM
  */
 
-class AnagramTest extends FunSuite {
+class AnagramTest extends FunSuite with ShouldMatchers {
     test("print ananagrams") {
         val a: Anagram = new Anagram
         assert(a.create("cat").sameElements(Array("cat", "cta", "act", "atc", "tca", "tac")))
