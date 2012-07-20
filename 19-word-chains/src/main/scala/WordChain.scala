@@ -22,13 +22,28 @@ class WordChain(wordsFile: String) {
         current.terminate()
     }
 
+    def search() {
+        val queue = mutable.Queue.empty[Node]
+
+        queue += root
+        root.visited = true
+
+        while(!queue.isEmpty) {
+            val node = queue.dequeue()
+            for(child <- node.children.filter(p => p.visited == false)) {
+                child.visited = true
+                queue += child
+            }
+        }
+    }
+
     def contains(word: String): Boolean = {
         var current = root
 
         for(ch <- word) {
             current.child(ch) match {
                 case Some(node) => current = node
-                case None => false
+                case None => return false
             }
         }
 
@@ -37,23 +52,26 @@ class WordChain(wordsFile: String) {
 }
 
 class Node(ch: Char = '\0') {
-    private val children = mutable.MutableList.empty[Node]
+    private val children_ = mutable.MutableList.empty[Node]
+    var visited = false
 
     def char = ch
 
     def addChild(ch: Char): Node = {
         val node = new Node(ch)
-        children += node
+        children_ += node
         node
     }
 
-    def hasChild(ch: Char): Boolean = children.contains(ch)
+    def hasChild(ch: Char): Boolean = children_.contains(ch)
 
-    def child(ch: Char): Option[Node] = children.find(p => p == ch).headOption
+    def child(ch: Char): Option[Node] = children_.find(p => p == ch).headOption
 
-    def isWord: Boolean = children.contains(Node.terminator)
+    def children = children_.toList
 
-    def terminate() { children += Node.terminator }
+    def isWord: Boolean = children_.contains(Node.terminator)
+
+    def terminate() { children_ += Node.terminator }
 
     override def equals(that: Any) = {
         that match {
