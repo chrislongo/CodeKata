@@ -19,6 +19,7 @@
         <module>14-trigrams</module>
         <module>18-dependencies</module>
         <module>19-word-chains</module>
+        <module>18-word-chains</module>
     </modules>
     <repositories>
         <repository>
