@@ -26,7 +26,7 @@ class WordChainTest extends FunSuite with ShouldMatchers {
 
     test("bfs") {
         val chain = new WordChain("data/words.txt")
-        for(word <- "this time is now the place is here".split(" "))
+        for(word <- "cat cot cog dog".split(" "))
             chain.insert(word)
 
         chain.search()

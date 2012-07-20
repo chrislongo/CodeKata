@@ -1,4 +1,5 @@
 import collection.mutable
+import Node._
 
 /**
  * User: chris
@@ -22,21 +23,6 @@ class WordChain(wordsFile: String) {
         current.terminate()
     }
 
-    def search() {
-        val queue = mutable.Queue.empty[Node]
-
-        queue += root
-        root.visited = true
-
-        while(!queue.isEmpty) {
-            val node = queue.dequeue()
-            for(child <- node.children.filter(p => p.visited == false)) {
-                child.visited = true
-                queue += child
-            }
-        }
-    }
-
     def contains(word: String): Boolean = {
         var current = root
 
@@ -49,39 +35,49 @@ class WordChain(wordsFile: String) {
 
         current.isWord
     }
+
+    def search() {
+        val queue = mutable.Queue[Node](root)
+
+        while(!queue.isEmpty) {
+            val node = queue.dequeue()
+            for(child <- node.children) {
+                if(!child.isEmpty) {
+                    queue += child
+                    print(child + " ")
+                }
+            }
+        }
+    }
 }
 
 class Node(ch: Char = '\0') {
-    private val children_ = mutable.MutableList.empty[Node]
-    var visited = false
+    private val children0 = mutable.MutableList.empty[Node]
 
-    def char = ch
+    def letter = ch
 
-    def addChild(ch: Char): Node = {
-        val node = new Node(ch)
-        children_ += node
+    def addChild(char: Char): Node = {
+        val node = new Node(char)
+        children0 += node
         node
     }
 
-    def hasChild(ch: Char): Boolean = children_.contains(ch)
-
-    def child(ch: Char): Option[Node] = children_.find(p => p == ch).headOption
-
-    def children = children_.toList
-
-    def isWord: Boolean = children_.contains(Node.terminator)
-
-    def terminate() { children_ += Node.terminator }
+    def hasChild(ch: Char): Boolean = children0.contains(ch)
+    def child(ch: Char): Option[Node] = children0.find(p => p == ch).headOption
+    def children = children0.toList
+    def isWord: Boolean = children0.contains(terminator)
+    def isEmpty: Boolean = ch == '\0'
+    def terminate() { children0 += terminator }
 
     override def equals(that: Any) = {
         that match {
-            case node: Node => node.char == char
-            case ch: Char => ch == char
+            case node: Node => node.letter == letter
+            case ch: Char => ch == letter
             case _ => false
         }
     }
 
-    override def toString = ch.toString
+    override def toString = letter.toString
 }
 
 object Node {
