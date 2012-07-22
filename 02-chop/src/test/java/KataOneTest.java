@@ -7,12 +7,10 @@ import static junit.framework.Assert.assertEquals;
  * Date: 7/6/12
  * Time: 7:39 PM
  */
-public class KataOneTest
-{
+public class KataOneTest {
     @Test
-    public void testRecursiveChop() throws Exception
-    {
-        int[] array = new int[] { 1, 2, 3, 4, 5 };
+    public void testRecursiveChop() throws Exception {
+        int[] array = new int[]{1, 2, 3, 4, 5};
         KataOne kata = new KataOne();
 
         assertEquals(kata.recursiveChop(1, array), 0);
@@ -28,9 +26,8 @@ public class KataOneTest
     }
 
     @Test
-    public void testIterativeChop() throws Exception
-    {
-        int[] array = new int[] { 1, 2, 3, 4, 5 };
+    public void testIterativeChop() throws Exception {
+        int[] array = new int[]{1, 2, 3, 4, 5};
         KataOne kata = new KataOne();
 
         assertEquals(kata.iterativeChop(1, array), 0);

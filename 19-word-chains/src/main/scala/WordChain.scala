@@ -51,10 +51,8 @@ class WordChain(wordsFile: String) {
     }
 }
 
-class Node(ch: Char = '\0') {
+class Node(val letter: Char = '\0') {
     private val children0 = mutable.MutableList.empty[Node]
-
-    def letter = ch
 
     def addChild(char: Char): Node = {
         val node = new Node(char)
@@ -66,7 +64,7 @@ class Node(ch: Char = '\0') {
     def child(ch: Char): Option[Node] = children0.find(p => p == ch).headOption
     def children = children0.toList
     def isWord: Boolean = children0.contains(terminator)
-    def isEmpty: Boolean = ch == '\0'
+    def isEmpty: Boolean = letter == '\0'
     def terminate() { children0 += terminator }
 
     override def equals(that: Any) = {

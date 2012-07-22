@@ -8,7 +8,7 @@ import io.Source
  */
 
 object SubWordsFast extends App {
-    val set = mutable.Set.empty[String]
+    private val set = mutable.Set.empty[String]
 
     benchmark()
 
