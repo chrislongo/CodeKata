@@ -7,6 +7,6 @@ package tree
  */
 
 class Node(val data: Int) {
-    var left: Node = null
-    var right: Node = null
+    var left: Node = _
+    var right: Node = _
 }

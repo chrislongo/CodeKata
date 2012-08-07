@@ -11,12 +11,10 @@ import java.util.TreeSet;
  * Date: 7/11/12
  * Time: 10:07 AM
  */
-public class AnagramFinderJava
-{
+public class AnagramFinderJava {
     private Map<String, TreeSet<String>> map = new HashMap<String, TreeSet<String>>();
 
-    public static void main(String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
         long start = System.currentTimeMillis();
 
         AnagramFinderJava finder = new AnagramFinderJava();
@@ -29,35 +27,29 @@ public class AnagramFinderJava
         System.out.println("Time: " + (end - start));
     }
 
-    public void loadWords() throws IOException
-    {
+    public void loadWords() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("data/words.txt"));
 
-        while(reader.ready())
-        {
+        while(reader.ready()) {
             String word = reader.readLine().toLowerCase();
             String key = sortString(word);
 
-            if(!map.containsKey(key))
-                map.put(key, new TreeSet<String>());
+            if(!map.containsKey(key)) map.put(key, new TreeSet<String>());
 
             map.get(key).add(word);
         }
     }
 
-    public int find()
-    {
+    public int find() {
         int count = 0;
 
         for(TreeSet<String> set : map.values())
-            if(set.size() > 1)
-                count++;
+            if(set.size() > 1) count++;
 
         return count;
     }
 
-    private String sortString(String s)
-    {
+    private String sortString(String s) {
         char[] chars = s.toCharArray();
         Arrays.sort(chars);
         return new String(chars);
