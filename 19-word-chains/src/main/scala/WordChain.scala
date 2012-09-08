@@ -8,78 +8,85 @@ import Node._
  */
 
 class WordChain(wordsFile: String) {
-    private val root: Node = new Node()
+  private val root: Node = new Node()
 
-    def insert(word: String) {
-        var current = root
+  def insert(word: String) {
+    var current = root
 
-        for(ch <- word) {
-            current.child(ch) match {
-                case Some(node) => current = node
-                case None => current = current.addChild(ch)
-            }
-        }
-
-        current.terminate()
+    for (ch <- word) {
+      current.child(ch) match {
+        case Some(node) => current = node
+        case None => current = current.addChild(ch)
+      }
     }
 
-    def contains(word: String): Boolean = {
-        var current = root
+    current.terminate()
+  }
 
-        for(ch <- word) {
-            current.child(ch) match {
-                case Some(node) => current = node
-                case None => return false
-            }
-        }
+  def contains(word: String): Boolean = {
+    var current = root
 
-        current.isWord
+    for (ch <- word) {
+      current.child(ch) match {
+        case Some(node) => current = node
+        case None => return false
+      }
     }
 
-    def search() {
-        val queue = mutable.Queue[Node](root)
+    current.isWord
+  }
 
-        while(!queue.isEmpty) {
-            val node = queue.dequeue()
-            for(child <- node.children) {
-                if(!child.isEmpty) {
-                    queue += child
-                    print(child + " ")
-                }
-            }
+  def search() {
+    val queue = mutable.Queue[Node](root)
+
+    while (!queue.isEmpty) {
+      val node = queue.dequeue()
+      for (child <- node.children) {
+        if (!child.isEmpty) {
+          queue += child
+          print(child + " ")
         }
+      }
     }
+  }
 }
 
 class Node(val letter: Char = '\0') {
-    private val children0 = mutable.MutableList.empty[Node]
+  private val children0 = mutable.MutableList.empty[Node]
 
-    def addChild(char: Char): Node = {
-        val node = new Node(char)
-        children0 += node
-        node
+  def addChild(char: Char): Node = {
+    val node = new Node(char)
+    children0 += node
+    node
+  }
+
+  def hasChild(ch: Char): Boolean = children0.contains(ch)
+
+  def child(ch: Char): Option[Node] = children0.find(p => p == ch).headOption
+
+  def children = children0.toList
+
+  def isWord: Boolean = children0.contains(terminator)
+
+  def isEmpty: Boolean = letter == '\0'
+
+  def terminate() {
+    children0 += terminator
+  }
+
+  override def equals(that: Any) = {
+    that match {
+      case node: Node => node.letter == letter
+      case ch: Char => ch == letter
+      case _ => false
     }
+  }
 
-    def hasChild(ch: Char): Boolean = children0.contains(ch)
-    def child(ch: Char): Option[Node] = children0.find(p => p == ch).headOption
-    def children = children0.toList
-    def isWord: Boolean = children0.contains(terminator)
-    def isEmpty: Boolean = letter == '\0'
-    def terminate() { children0 += terminator }
-
-    override def equals(that: Any) = {
-        that match {
-            case node: Node => node.letter == letter
-            case ch: Char => ch == letter
-            case _ => false
-        }
-    }
-
-    override def toString = letter.toString
+  override def toString = letter.toString
 }
 
 object Node {
-    def terminator = new Node('\0')
+  def terminator = new Node('\0')
 }
 
 

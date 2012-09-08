@@ -6,10 +6,14 @@ import tree.Tree
  * Time: 11:16 AM
  */
 
-class SortBalls
-{
-    val tree: Tree = new Tree
+class SortBalls {
+  val tree: Tree = new Tree
 
-    def add(value: Int) { tree.add(value) }
-    def balls = { tree.elements }
+  def add(value: Int) {
+    tree.add(value)
+  }
+
+  def balls = {
+    tree.elements
+  }
 }

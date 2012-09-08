@@ -7,17 +7,15 @@ import org.scalatest.matchers.ShouldMatchers
  * Time: 11:01 AM
  */
 
-class SortBallsTest extends FunSuite with ShouldMatchers
-{
-    test("Results are in order")
-    {
-        val sb = new SortBalls
-        sb.balls should equal(Array())
-        sb.add(20)
-        sb.balls should equal(Array(20))
-        sb.add(10)
-        sb.balls should equal(Array(10, 20))
-        sb.add(30)
-        sb.balls should equal(Array(10, 20, 30))
-    }
+class SortBallsTest extends FunSuite with ShouldMatchers {
+  test("Results are in order") {
+    val sb = new SortBalls
+    sb.balls should equal(Array())
+    sb.add(20)
+    sb.balls should equal(Array(20))
+    sb.add(10)
+    sb.balls should equal(Array(10, 20))
+    sb.add(30)
+    sb.balls should equal(Array(10, 20, 30))
+  }
 }

@@ -8,8 +8,8 @@ import org.scalatest.matchers.ShouldMatchers
  */
 
 class AnagramTest extends FunSuite with ShouldMatchers {
-    test("generate ananagrams") {
-        val a: Anagram = new Anagram
-        assert(a.create("cat").sameElements(Array("cat", "cta", "act", "atc", "tca", "tac")))
-    }
+  test("generate ananagrams") {
+    val a: Anagram = new Anagram
+    assert(a.create("cat").sameElements(Array("cat", "cta", "act", "atc", "tca", "tac")))
+  }
 }

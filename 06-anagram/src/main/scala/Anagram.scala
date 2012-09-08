@@ -7,24 +7,24 @@ import collection.mutable.ArrayBuffer
  */
 
 class Anagram {
-    def create(word: String): Array[String] = {
-        val buffer = ArrayBuffer.empty[String]
+  def create(word: String): Array[String] = {
+    val buffer = ArrayBuffer.empty[String]
 
-        def recursive(prefix: String, word: String) {
-            if(word.length() <= 1) {
-                buffer += (prefix + word)
-            }
-            else {
-                for(i <- 0 until word.length()) {
-                    val current = word.substring(i, i + 1)
-                    val before = word.substring(0, i)
-                    val after = word.substring(i + 1)
-                    recursive(prefix + current, before + after)
-                }
-            }
+    def recursive(prefix: String, word: String) {
+      if (word.length() <= 1) {
+        buffer += (prefix + word)
+      }
+      else {
+        for (i <- 0 until word.length()) {
+          val current = word.substring(i, i + 1)
+          val before = word.substring(0, i)
+          val after = word.substring(i + 1)
+          recursive(prefix + current, before + after)
         }
-
-        recursive("", word)
-        buffer.toArray
+      }
     }
+
+    recursive("", word)
+    buffer.toArray
+  }
 }

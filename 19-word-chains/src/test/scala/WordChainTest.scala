@@ -8,27 +8,27 @@ import org.scalatest.matchers.ShouldMatchers
  */
 
 class WordChainTest extends FunSuite with ShouldMatchers {
-    test("Insert words") {
-        val chain = new WordChain("data/words.txt")
-        chain.insert("hello")
-        chain.insert("help")
-        chain.insert("hell")
-        chain.insert("he")
-        chain.insert("cat")
+  test("Insert words") {
+    val chain = new WordChain("data/words.txt")
+    chain.insert("hello")
+    chain.insert("help")
+    chain.insert("hell")
+    chain.insert("he")
+    chain.insert("cat")
 
-        chain.contains("hello") should be(true)
-        chain.contains("help") should be(true)
-        chain.contains("hell") should be(true)
-        chain.contains("he") should be(true)
-        chain.contains("cat") should be(true)
-        chain.contains("cattle") should be (false)
-    }
+    chain.contains("hello") should be(true)
+    chain.contains("help") should be(true)
+    chain.contains("hell") should be(true)
+    chain.contains("he") should be(true)
+    chain.contains("cat") should be(true)
+    chain.contains("cattle") should be(false)
+  }
 
-    test("bfs") {
-        val chain = new WordChain("data/words.txt")
-        for(word <- "cat cot cog dog".split(" "))
-            chain.insert(word)
+  test("bfs") {
+    val chain = new WordChain("data/words.txt")
+    for (word <- "cat cot cog dog".split(" "))
+      chain.insert(word)
 
-        chain.search()
-    }
+    chain.search()
+  }
 }

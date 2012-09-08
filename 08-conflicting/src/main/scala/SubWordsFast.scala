@@ -8,39 +8,39 @@ import io.Source
  */
 
 object SubWordsFast extends App {
-    private val set = mutable.Set.empty[String]
+  private val set = mutable.Set.empty[String]
 
-    benchmark()
+  benchmark()
 
-    def benchmark() {
-        val start = System.currentTimeMillis()
-        loadWords()
-        val count = countWords()
-        val stop = System.currentTimeMillis()
+  def benchmark() {
+    val start = System.currentTimeMillis()
+    loadWords()
+    val count = countWords()
+    val stop = System.currentTimeMillis()
 
-        println("Count: " + count)
-        println("Time: " + (stop - start) + "ms")
+    println("Count: " + count)
+    println("Time: " + (stop - start) + "ms")
+  }
+
+  def loadWords() {
+    for (line <- Source.fromFile("data/words.txt").getLines().filter(s => s.length() <= 6)) {
+      set += line.toLowerCase
     }
+  }
 
-    def loadWords() {
-        for(line <- Source.fromFile("data/words.txt").getLines().filter(s => s.length() <= 6)) {
-            set += line.toLowerCase
-        }
+  def countWords(): Int = {
+    var count = 0
+
+    for (word <- set.filter(s => s.length == 6)) {
+      for (i <- 1 until word.length) {
+
+        val sub1 = word.substring(0, i)
+        val sub2 = word.substring(i)
+
+        if (set.contains(sub1) && set.contains(sub2))
+          count += 1
+      }
     }
-    
-    def countWords(): Int = {
-        var count = 0
-
-        for(word <- set.filter(s => s.length == 6)) {
-            for(i <- 1 until word.length) {
-
-            val sub1 = word.substring(0, i)
-            val sub2 = word.substring(i)
-
-            if(set.contains(sub1) && set.contains(sub2))
-                count += 1
-            }
-        }
-        count
-    }
+    count
+  }
 }

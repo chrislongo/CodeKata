@@ -7,27 +7,27 @@ import org.scalatest.FunSuite
  */
 
 class BloomFilterTest extends FunSuite {
-    test("bloom filter contains strings") {
-        val filter: BloomFilter = new BloomFilter()
+  test("bloom filter contains strings") {
+    val filter: BloomFilter = new BloomFilter()
 
-        filter.add("One")
-        filter.add("Two")
-        filter.add("Three")
+    filter.add("One")
+    filter.add("Two")
+    filter.add("Three")
 
-        assert(filter.contains("One"))
-        assert(filter.contains("Two"))
-        assert(filter.contains("Three"))
-    }
+    assert(filter.contains("One"))
+    assert(filter.contains("Two"))
+    assert(filter.contains("Three"))
+  }
 
-    test("bloom filter does not contain strings") {
-        val filter: BloomFilter = new BloomFilter()
+  test("bloom filter does not contain strings") {
+    val filter: BloomFilter = new BloomFilter()
 
-        filter.add("One")
-        filter.add("Two")
-        filter.add("Three")
+    filter.add("One")
+    filter.add("Two")
+    filter.add("Three")
 
-        assert(! filter.contains("Four"))
-        assert(! filter.contains("Five"))
-        assert(! filter.contains("Six"))
-    }
+    assert(!filter.contains("Four"))
+    assert(!filter.contains("Five"))
+    assert(!filter.contains("Six"))
+  }
 }
